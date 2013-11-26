@@ -1,5 +1,7 @@
 package nc.mairie.etatcivil;
 
+import java.io.File;
+
 import nc.mairie.technique.Services;
 /**
  * Insérez la description du type ici.
@@ -64,7 +66,7 @@ private String getMairie() {
  * @return String
  */
 public String getNomDossier() {
-	return getMairie()+"\\"+getEtablissement()+"\\"+getStatut()+"\\"+getTypeActe()+"\\"+getAnneeActe();
+	return getMairie()+File.separator+getEtablissement()+File.separator+getStatut()+File.separator+getTypeActe()+File.separator+getAnneeActe();
 }
 /**
  * Insérez la description de la méthode ici.
