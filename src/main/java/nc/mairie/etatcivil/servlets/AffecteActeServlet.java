@@ -10,6 +10,8 @@ import nc.mairie.technique.FormateListe;
 import nc.mairie.technique.Transaction;
 import nc.mairie.technique.Services;
 
+import org.apache.commons.io.FileUtils;
+
 /**
  * Insérez la description du type ici.
  * Date de création : (04/03/2004 13:01:47)
@@ -207,11 +209,26 @@ private boolean performAffecterImage(javax.servlet.http.HttpServletRequest reque
 		}
 	}
 
-	//On renomme le fichier pour faire la copie
-	if (! fichierOrg.renameTo(fichierDest)) {
-		bean.setMessageErreur("Imposible de renommer le fichier (occupé ou innacessible) "+imageName+" en "+fichierDest.getName());
+	//On copie le fichier
+	FileUtils.copyFile(fichierOrg, fichierDest);
+	
+	//on teste que la copie est OK
+	if (!fichierDest.exists()) {
+		bean.setMessageErreur("Imposible de copier le fichier "+fichierOrg+" vers "+fichierDest);
 		return false;
 	}
+	
+	//on supprime le fichier org
+	if (!fichierOrg.delete()) {
+		bean.setMessageErreur("Imposible de supprimer le fichier "+fichierOrg);
+		return false;
+	}
+	
+//	//On renomme le fichier pour faire la copie
+//	if (! fichierOrg.renameTo(fichierDest)) {
+//		bean.setMessageErreur("Imposible de renommer le fichier (occupé ou innacessible) "+imageName+" en "+fichierDest.getName());
+//		return false;
+//	}
 	return true;
 }
 /**
