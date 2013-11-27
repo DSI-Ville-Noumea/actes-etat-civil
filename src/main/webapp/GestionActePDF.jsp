@@ -48,7 +48,7 @@ document.formu.elements[nom].focus();
 <TABLE width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 
     <tr>
-      <TD style="background-repeat : no-repeat;" nowrap height="88" align="center">
+      <TD style="background-repeat : no-repeat;" nowrap height="120" align="center">
       <TABLE border="0" class="sigp2" cellpadding="0" cellspacing="0">
   <TBODY>
           <TR>
@@ -132,7 +132,7 @@ catch (java.lang.ArrayIndexOutOfBoundsException _e0) {
 </TD>
     </tr>
     <tr>
-      <TD width="100%" nowrap height="356">
+      <TD width="100%" nowrap >
 
 <%if (gestionActePDFBean.getCurrentPDF() != null && gestionActePDFBean.getCurrentPDF().length() >0 ) {%><EMBED type="application/pdf" src="<%=gestionActePDFBean.getVoirPDFUrl()%>" width="100%" height="100%">
 <%}%>

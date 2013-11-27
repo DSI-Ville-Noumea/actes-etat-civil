@@ -94,11 +94,11 @@ function affecter() {
 <TABLE width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 
     <tr>
-      <TD style="background-repeat : no-repeat;" nowrap height="88" align="center">
+      <TD style="background-repeat : no-repeat;" nowrap height="120" align="center">
       <TABLE border="0" class="sigp2" cellpadding="0" cellspacing="0">
   <TBODY>
           <TR>
-            <TD colspan="3" height="80" valign="bottom">
+            <TD colspan="3" valign="bottom">
       <TABLE border="1" class="sigp2">
         <TBODY>
           <TR>
@@ -187,9 +187,11 @@ catch (java.lang.ArrayIndexOutOfBoundsException _e0) {
 </TABLE>
       </TD>
     </tr>
+    <% if (affecteActeBean != null && affecteActeBean.getMessageErreur()!= null) { %>
     <TR>
-      <TD align="center" nowrap><%=affecteActeBean == null || affecteActeBean.getMessageErreur()== null ? "" : affecteActeBean.getMessageErreur()%></TD>
+      <TD align="center" nowrap> affecteActeBean.getMessageErreur()%></TD>
     </TR>
+    <%} %>
     <tr>
       <TD width="100%" nowrap>
 <%if (affecteActeBean.getCurrentPDF() != null && affecteActeBean.getCurrentPDF().length() >0 ) {%><EMBED type="application/pdf" src="<%=affecteActeBean.getVoirPDFUrl()%>" width="100%" height="100%">
