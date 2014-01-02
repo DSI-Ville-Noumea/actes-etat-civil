@@ -189,9 +189,10 @@ catch (java.lang.ArrayIndexOutOfBoundsException _e0) {
     </tr>
     <% if (affecteActeBean != null && affecteActeBean.getMessageErreur()!= null) { %>
     <TR>
-      <TD align="center" nowrap> affecteActeBean.getMessageErreur()%></TD>
+      <TD align="center" nowrap> <%=affecteActeBean.getMessageErreur()%></TD>
     </TR>
-    <%} %>
+    <%		affecteActeBean.setMessageErreur(null);
+    	} %>
     <tr>
       <TD width="100%" nowrap>
 <%if (affecteActeBean.getCurrentPDF() != null && affecteActeBean.getCurrentPDF().length() >0 ) {%><EMBED type="application/pdf" src="<%=affecteActeBean.getVoirPDFUrl()%>" width="100%" height="100%">

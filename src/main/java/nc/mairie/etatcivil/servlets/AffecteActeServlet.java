@@ -149,6 +149,16 @@ private AffecteActeBean initialiseBean(javax.servlet.http.HttpServletRequest req
 private void initialiseImages(AffecteActeBean bean) {
 
 	String repOrg = (String)getMesParametres().get("REP_PDF");
+	
+	if (repOrg == null) {
+		bean.setMessageErreur("Le parametre REP_PDF n'est pas défini");
+		return;
+	}
+	
+	if (!new File(repOrg).exists()) {
+		bean.setMessageErreur("Le parametre REP_PDF "+repOrg+" n'est pas valide ou innaccessible.");
+		return;
+	}
 
 	File [] files = new File(repOrg).listFiles();
 		
@@ -169,10 +179,27 @@ private void initialiseImages(AffecteActeBean bean) {
  */
 private boolean performAffecterImage(javax.servlet.http.HttpServletRequest request, String acteName) throws Exception {
 
-	String repOrg = (String)getMesParametres().get("REP_PDF");
-	String repDest = (String)getMesParametres().get("REP_ECETATCIVIL");
-
 	AffecteActeBean bean = (AffecteActeBean) request.getSession().getAttribute("affecteActeBean");
+
+	String repOrg = (String)getMesParametres().get("REP_PDF");
+	if (repOrg == null) {
+		bean.setMessageErreur("Le parametre REP_PDF n'est pas défini");
+		return false;
+	}
+	if (!new File(repOrg).exists()) {
+		bean.setMessageErreur("Le parametre REP_PDF "+repOrg+" n'est pas valide ou innaccessible.");
+		return false;
+	}
+	
+	String repDest = (String)getMesParametres().get("REP_ECETATCIVIL");
+	if (repDest == null) {
+		bean.setMessageErreur("Le parametre REP_ECETATCIVIL n'est pas défini");
+		return false;
+	}
+	if (!new File(repDest).exists()) {
+		bean.setMessageErreur("Le parametre REP_ECETATCIVIL "+repDest+" n'est pas valide ou innaccessible.");
+		return false;
+	}
 
 	String imageName = request.getParameter("LESIMAGES");
 
@@ -435,9 +462,11 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 		}
 
 		//Si le bean n'est pas dans la session ou si le dernier bean n'est pas le couyrant alors reset du bean
-		if (bean == null || ! request.getSession().getAttribute("lastBean").equals(bean.getClass().getName())) {
+		if (bean == null || ! bean.getClass().getName().equals(request.getSession().getAttribute("lastBean"))) {
 			bean = initialiseBean(request);
-			request.getSession().setAttribute("lastBean",bean.getClass().getName());
+			if (bean.getMessageErreur() == null) {
+				request.getSession().setAttribute("lastBean",bean.getClass().getName());
+			}
 		}
 		
 		//Si demande de voirPDF
@@ -448,8 +477,6 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 
 		String JSP = "AffecteActe.jsp";
 
-		//Efface message erreur
-		bean.setMessageErreur(null);
 
 		//Récup des listes SSI on arribe du formulaire
 		if (request.getParameterNames().hasMoreElements()) {
