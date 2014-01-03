@@ -41,7 +41,7 @@ document.writeln('<TBODY>');
 //		document.writeln('</TD>');
 
 		document.writeln('<TD>');
-		document.writeln('<A href="' + lien[i] + '">');
+		document.writeln('<A href="' + lien[i] + '" style="color: rgb(255,255,255);text-decoration: none">');
 		document.writeln(onglet[i]);
 		document.writeln('</TD>');
 		document.writeln('</A>');
