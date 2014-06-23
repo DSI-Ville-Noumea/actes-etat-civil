@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 
@@ -19,6 +20,7 @@ public abstract class SuperServlet extends HttpServlet {
 	/**
 	 * 
 	 */
+	private final static Logger logger = Logger.getLogger(SuperServlet.class.getName());
 	private static final long serialVersionUID = 5203677608940382334L;
 	private Hashtable<String, String> mesParametres = new Hashtable<String, String>();
 	private static ArrayList<String> listeUserHabilites = new ArrayList<String>();
@@ -33,7 +35,7 @@ public abstract class SuperServlet extends HttpServlet {
 
 		boolean doitPrendreInit = getServletContext().getInitParameterNames().hasMoreElements();
 
-		System.out.println("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+		logger.info("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 		if (getMesParametres().size() == 0) {
 
 			//chargement des paramêtres du contexte
@@ -44,7 +46,7 @@ public abstract class SuperServlet extends HttpServlet {
 					if (cleParametre != null && ! cleParametre.startsWith("com.ibm.websphere") ) {
 						String valParametre = doitPrendreInit ? (String)getServletContext().getInitParameter(cleParametre) : (String)getServletContext().getAttribute(cleParametre);
 						getMesParametres().put(cleParametre,valParametre);
-						System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+						logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 					}
 				} catch (Exception e) {
 					continue;
@@ -57,10 +59,10 @@ public abstract class SuperServlet extends HttpServlet {
 				String cleParametre = (String)enumServlet.nextElement();
 				String valParametre = (String)getInitParameter(cleParametre);
 				getMesParametres().put(cleParametre,valParametre);
-				System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+				logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 			}
 		}
-		System.out.println("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+		logger.info("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 	}
 
 	public Hashtable<String, String> getMesParametres() {
@@ -123,7 +125,7 @@ public abstract class SuperServlet extends HttpServlet {
 		
 		//Contrôle de la liste des authorisés
 		if (user == null || ! getListeUserHabilites().contains(user.toUpperCase())) {
-			System.out.println("AffecteActeServlet : L'utilisateur "+user+" n'appartient pas à la liste des utilisateurs habilités à affecter les actes");
+			logger.info("AffecteActeServlet : L'utilisateur "+user+" n'appartient pas à la liste des utilisateurs habilités à affecter les actes");
 			return false;
 		}
 		

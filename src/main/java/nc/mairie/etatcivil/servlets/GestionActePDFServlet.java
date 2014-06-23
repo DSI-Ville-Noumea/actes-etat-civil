@@ -70,7 +70,7 @@ private boolean concatenePDF(String [] args) throws Exception {
             master.addAll(bookmarks);
         }
         pageOffset += n;
-        //            System.out.println("There are " + n + " pages in " + args[f]);
+        //            logger.info("There are " + n + " pages in " + args[f]);
 
         if (f == 0) {
             // step 1: creation of a document-object
@@ -86,7 +86,7 @@ private boolean concatenePDF(String [] args) throws Exception {
             ++i;
             page = writer.getImportedPage(reader, i);
             writer.addPage(page);
-         //   System.out.println("Processed page " + i);
+         //   logger.info("Processed page " + i);
         }
         PRAcroForm form = reader.getAcroForm();
         if (form != null)
