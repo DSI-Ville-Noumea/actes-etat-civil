@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc.mairie</groupId>
   <artifactId>actes-etat-civil</artifactId>
-  <version>2.5</version>
+  <version>2.6-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>actes-etat-civil</name>
 	<description>Gestion des actes d'état-civil</description>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>6.0.39</version>
+			<version>6.0.41</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -47,17 +47,17 @@
 				<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-access</artifactId>
-			<version>1.1.1</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.1.1</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>1.1.1</version>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -171,7 +171,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.8.1</version>
+							<version>2.9.1</version>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -217,10 +217,11 @@
 							<artifactId>maven-changelog-plugin</artifactId>
 							<version>2.2</version>
 						</plugin>
+						<!--  findbugs ne marche pas avec java 1.8 -->
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>findbugs-maven-plugin</artifactId>
-							<version>2.4.0</version>
+							<version>2.5.4</version>
 						</plugin>
 					</reportPlugins>
 				</configuration>
@@ -325,6 +326,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<svnurl>https://svn.ville-noumea.nc/sed/actes-etat-civil</svnurl>
 		<java.version>1.7</java.version>
-		<framework_version>2.0</framework_version>
+		<framework_version>2.1</framework_version>
+		<!-- avec java 8 décommenter ci-dessous pour ne pas avoir les erreurs javadoc @param, @result, ... -->
+  		<!--additionalparam>-Xdoclint:none</additionalparam-->
 	</properties>
 </project>
