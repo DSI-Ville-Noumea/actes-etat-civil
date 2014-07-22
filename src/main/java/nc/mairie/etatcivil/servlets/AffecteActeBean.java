@@ -233,7 +233,7 @@ public String forComboHTML(String [] liste, String select) {
 }
 /**
 * Cette méthode retourne la date courante sous la forme jj/mm/aaaa
-* * @param liste liste
+ * @param liste liste
  * @param colors colors
  * @param select select
  * @return String
