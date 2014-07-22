@@ -18,6 +18,7 @@ public class GestionActePDFBean {
 	/**
 	 * Insérez la description de la méthode ici.
 	 *  Date de création : (17/06/2004 11:23:12)
+	 * @param aVoirPDFUrl aVoirPDFUrl
 	 */
 	public GestionActePDFBean(String aVoirPDFUrl) {
 		voirPDFUrl = aVoirPDFUrl;
@@ -63,7 +64,9 @@ public java.lang.String getCurrentPDF() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (08/04/2004 13:00:18)
+ * @param i i
  * @return java.lang.String[]
+ * @throws Exception Exception
  */
 public java.lang.String getLB_INDICE(int i) throws Exception {
 	return ""+i;
@@ -71,6 +74,7 @@ public java.lang.String getLB_INDICE(int i) throws Exception {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (14/04/2004 09:59:18)
+ * @param i i
  * @return java.lang.String[]
  */
 public java.lang.String getLB_LESPDF(int i) {
@@ -94,6 +98,7 @@ public java.lang.String getLB_LESPDF_SELECT() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (14/04/2004 09:59:18)
+ * @param i i
  * @return java.lang.String[]
  */
 public java.lang.String getLB_LESPDFCHOISIS(int i) {

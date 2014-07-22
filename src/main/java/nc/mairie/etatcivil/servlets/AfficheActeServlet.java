@@ -70,7 +70,7 @@ private void performAffichePDF(javax.servlet.http.HttpServletRequest request, ja
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @param res Object that encapsulates the response from the servlet
  */
 public void performTask(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse res) 
 	throws IOException{
@@ -157,7 +157,6 @@ private String recupereIdPDF(javax.servlet.http.HttpServletRequest request, Stri
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/02/2002 10:51:46)
- * @return fr.averse.servlets.Contexte
  */
 @SuppressWarnings("unused")
 private void supprimerIdPDF(javax.servlet.http.HttpServletRequest request, String IPAddr) throws Exception{

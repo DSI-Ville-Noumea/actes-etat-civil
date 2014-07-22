@@ -29,7 +29,6 @@ public abstract class SuperServlet extends HttpServlet {
 	/**
 	 * Insérez la description de la méthode à cet endroit.
 	 *  Date de création : (22/02/2002 10:51:46)
-	 * @return fr.averse.servlets.Contexte
 	 */
 	protected void initialiseParametreInitiaux() {
 
@@ -84,7 +83,7 @@ public abstract class SuperServlet extends HttpServlet {
 	/**
 	 * Méthode qui contrôle l'habilitation d'un utilisateur qui se connecte
 	 * @author Luc Bourdil
-	 * @param HttpServletRequest
+	 * @param request request
 	 * @return boolean
 	 */
 	public boolean controlerHabilitation(javax.servlet.http.HttpServletRequest request) {

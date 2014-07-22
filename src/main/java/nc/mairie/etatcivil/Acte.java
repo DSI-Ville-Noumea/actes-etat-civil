@@ -19,6 +19,12 @@ public class Acte {
  * Commentaire relatif au constructeur Acte.
  * "1801C1200100001"
  * "18 01 C 1 2001 00001"
+ * @param aMairie aMairie
+ * @param aEtablissement aEtablissement
+ * @param aStatut aStatut
+ * @param aTypeActe aTypeActe
+ * @param aAnneeActe aAnneeActe
+ * @param aNumeroActe aNumeroActe
  */
 public Acte(String aMairie, String aEtablissement, String aStatut, String aTypeActe, String aAnneeActe, String aNumeroActe) {
 	mairie= Services.lpad(aMairie,2,"0");
@@ -119,8 +125,8 @@ private String getTypeActe() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (01/04/2004 09:36:50)
+ * @param nomFichier nomFichier
  * @return migration.etatcivil.Acte
- * @param numActe String
  */
 public static Acte parse(String nomFichier) {
 	if (nomFichier == null || nomFichier.length() != 15)

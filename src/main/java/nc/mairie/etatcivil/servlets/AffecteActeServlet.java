@@ -262,7 +262,7 @@ private boolean performAffecterImage(javax.servlet.http.HttpServletRequest reque
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_AFFECTER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -344,7 +344,7 @@ public void performPB_AFFECTER(javax.servlet.http.HttpServletRequest request) th
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public static void performPB_LESIMAGES(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -364,7 +364,7 @@ public static void performPB_LESIMAGES(javax.servlet.http.HttpServletRequest req
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_DEBUTACTE(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -389,7 +389,7 @@ public void performPB_DEBUTACTE(javax.servlet.http.HttpServletRequest request) t
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_RAFRAICHIR(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -401,6 +401,7 @@ public void performPB_RAFRAICHIR(javax.servlet.http.HttpServletRequest request) 
  * 
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_VOIRPDF(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception {
 

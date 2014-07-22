@@ -22,7 +22,8 @@ public class GestionActePDFServlet extends SuperServlet {
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @param nomFichier nomFichier
+ * @throws Exception Exception
  */
 public void affectePDFCourant(javax.servlet.http.HttpServletRequest request, String nomFichier) throws Exception {
 
@@ -175,7 +176,7 @@ private void initialisePDFChoisis(GestionActePDFBean bean) {
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_BAS(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -206,7 +207,7 @@ public void performPB_BAS(javax.servlet.http.HttpServletRequest request) throws 
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_DROIT(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -236,7 +237,7 @@ public void performPB_DROIT(javax.servlet.http.HttpServletRequest request) throw
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_FUSIONNER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -293,7 +294,7 @@ public void performPB_FUSIONNER(javax.servlet.http.HttpServletRequest request) t
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_GAUCHE(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -324,7 +325,7 @@ public void performPB_GAUCHE(javax.servlet.http.HttpServletRequest request) thro
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_HAUT(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -355,7 +356,7 @@ public void performPB_HAUT(javax.servlet.http.HttpServletRequest request) throws
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_LESPDF(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -370,7 +371,7 @@ public void performPB_LESPDF(javax.servlet.http.HttpServletRequest request) thro
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_LESPDFCHOISIS(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -384,7 +385,7 @@ public void performPB_LESPDFCHOISIS(javax.servlet.http.HttpServletRequest reques
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_SCINDER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -437,7 +438,7 @@ public void performPB_SCINDER(javax.servlet.http.HttpServletRequest request) thr
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
- * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_SUPPRIMER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -477,6 +478,7 @@ public void performPB_SUPPRIMER(javax.servlet.http.HttpServletRequest request) t
  * 
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
+ * @throws Exception Exception
  */
 public void performPB_VOIRPDF(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception {
 

@@ -29,6 +29,7 @@ public class AffecteActeBean implements Serializable{
 	/**
 	 * Insérez la description de la méthode ici.
 	 *  Date de création : (17/06/2004 11:18:27)
+	 * @param aVoirPDFUrl aVoirPDFUrl
 	 */
 	public AffecteActeBean(String aVoirPDFUrl) {
 		voirPDFUrl = aVoirPDFUrl;
@@ -113,6 +114,8 @@ public java.lang.String getLB_IMAGES_SELECT() {
  * Insérez la description de la méthode ici.
  *  Date de création : (08/04/2004 13:00:18)
  * @return java.lang.String[]
+ * @param i i
+ * @throws Exception Exception
  */
 public java.lang.String getLB_INDICE(int i) throws Exception {
 	return ""+i;
@@ -172,7 +175,7 @@ public void setLB_ACTES_SELECT(java.lang.String newLB_ACTES_SELECT) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (14/04/2004 09:59:18)
- * @param newLB_ACTES java.lang.String[]
+  * @param newLB_ACTES_NUM newLB_ACTES_NUM
  */
 public void setLB_ACTES_NUM(java.lang.String[] newLB_ACTES_NUM) {
 	LB_ACTES_NUM = newLB_ACTES_NUM;
@@ -180,7 +183,7 @@ public void setLB_ACTES_NUM(java.lang.String[] newLB_ACTES_NUM) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (15/06/2004 13:32:52)
- * @param newLB_ACTES_SELECT java.lang.String
+  * @param newLB_ACTES_NUM_SELECT newLB_ACTES_NUM_SELECT
  */
 public void setLB_ACTES_NUM_SELECT(java.lang.String newLB_ACTES_NUM_SELECT) {
 	LB_ACTES_NUM_SELECT = newLB_ACTES_NUM_SELECT;
@@ -221,13 +224,20 @@ public void setMessageErreur(java.lang.String newMessageErreur) {
 
 /**
 * Cette méthode retourne la date courante sous la forme jj/mm/aaaa
-**/
+ * @param liste liste
+ * @param select select
+ * @return String
+ */
 public String forComboHTML(String [] liste, String select) {
 	return forComboHTML(liste, null, select);
 }
 /**
 * Cette méthode retourne la date courante sous la forme jj/mm/aaaa
-**/
+* * @param liste liste
+ * @param colors colors
+ * @param select select
+ * @return String
+ */
 public String forComboHTML(String [] liste, String [] colors, String select) {
 	return forComboHTML(liste, colors, null, select);
 }
@@ -235,6 +245,13 @@ public String forComboHTML(String [] liste, String [] colors, String select) {
 * Cette méthode retourne la date courante sous la forme jj/mm/aaaa
 **/
 
+/**
+ * @param liste liste
+ * @param colors colors
+ * @param fonds fonds
+ * @param select select
+ * @return String
+ */
 public String forComboHTML(String [] liste, String [] colors, String [] fonds, String select) {
 
 	//<OPTION value="2" style="background-color: red; color: green;">2</OPTION>
