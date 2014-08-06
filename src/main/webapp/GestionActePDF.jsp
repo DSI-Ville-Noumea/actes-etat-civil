@@ -1,5 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page import="nc.mairie.etatcivil.servlets.SuperServlet"%>
+<%@page contentType="text/html;charset=UTF-8"%>
 <HTML>
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
@@ -9,13 +10,13 @@
 <SCRIPT language="javascript" src="js/menu.js"></SCRIPT>
 <SCRIPT language="JavaScript">
 
-//afin de sélectionner un élément dans une liste
+//afin de sÃ©lectionner un Ã©lÃ©ment dans une liste
 function executeBouton(nom)
 {
 document.formu.elements[nom].click();
 }
 
-// afin de mettre le focus sur une zone précise
+// afin de mettre le focus sur une zone prÃ©cise
 function setfocus(nom)
 {
 document.formu.elements[nom].focus();
@@ -27,11 +28,11 @@ document.formu.elements[nom].focus();
 <%
 	if (SuperServlet.getUserAppli(request) == null) {
 		response.setStatus(javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED); 
-		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour l'état civil\"");
+		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour l'Ã©tat civil\"");
 
 		response.setContentType("text/html");
 		try {
-		out.println("Vous n'êtes pas habilité");
+		out.println("Vous n'Ãªtes pas habilitÃ©");
 		} catch (Exception e) {
 		}
 		return;
