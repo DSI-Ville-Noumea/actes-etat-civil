@@ -1,7 +1,10 @@
 package nc.mairie.etatcivil.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Logger;
@@ -23,7 +26,6 @@ public abstract class SuperServlet extends HttpServlet {
 	private final static Logger logger = Logger.getLogger(SuperServlet.class.getName());
 	private static final long serialVersionUID = 5203677608940382334L;
 	private Hashtable<String, String> mesParametres = new Hashtable<String, String>();
-	private static ArrayList<String> listeUserHabilites = new ArrayList<String>();
 	
 	
 	/**
@@ -119,18 +121,15 @@ public abstract class SuperServlet extends HttpServlet {
 			}
 		}
 
-		//init de la liste de user habilités au cas où mis à jour
-		initialiseListeUserHabilites();
-		
-		//Contrôle de la liste des authorisés
-		if (user == null || ! getListeUserHabilites().contains(user.toUpperCase())) {
-			logger.info("AffecteActeServlet : L'utilisateur "+user+" n'appartient pas à la liste des utilisateurs habilités à affecter les actes");
-			return false;
-		}
-		
 		//Contrôle de l'habilitation LDAP
 		if (!MairieLDAP.controlerHabilitation(getMesParametres(), user,passwd))
 			return false;
+		
+		//test de l'habilitation du user
+		if (!isUserHabilite(user)){
+			return false;
+		}
+		
 		//Creation du UserAppli
 		UserAppli aUserAppli = new UserAppli(user,passwd, (String)getMesParametres().get("HOST_SGBD"));
 		//Ajout du user en var globale
@@ -165,54 +164,43 @@ public abstract class SuperServlet extends HttpServlet {
 	public abstract void performTask(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws IOException;
 
 	/**
-	 * Insérez la description de la méthode ici.
-	 *  Date de création : (26/05/2004 11:42:46)
-	 * @return ArrayList
+	 * @param user user
+	 * @return true si habilite
 	 */
-	private static ArrayList<String> getListeUserHabilites() {
-		if (listeUserHabilites ==  null) {
-			listeUserHabilites = new ArrayList<String>();
-		}
-		return listeUserHabilites;
-	}
-
-	/**
-	 * Insérez la description de la méthode ici.
-	 *  Date de création : (14/04/2004 09:53:56)
-	 */
-	protected  void initialiseListeUserHabilites() {
+	protected  boolean isUserHabilite(String user) {
 	
-		if (getListeUserHabilites().size() == 0) {
-			Transaction t = null;
+		Transaction t = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try  {
+			String admin = (String)getMesParametres().get("HOST_SGBD_ADMIN");
+			String pwd = (String)getMesParametres().get("HOST_SGBD_PWD");
+			String serveur =(String)getMesParametres().get("HOST_SGBD");
 			
-			try  {
-				String admin = (String)getMesParametres().get("HOST_SGBD_ADMIN");
-				String pwd = (String)getMesParametres().get("HOST_SGBD_PWD");
-				String serveur =(String)getMesParametres().get("HOST_SGBD");
-				
-				UserAppli aUser = new UserAppli(admin, pwd, serveur);
-				
-				t = new Transaction(aUser);
-		
-				java.sql.Connection conn = t.getConnection();
-				java.sql.Statement st = conn.createStatement();
-				java.sql.ResultSet rs = st.executeQuery("select * from mairie.dcidut where APDF='O'");
-				
-				while (rs.next()){
-					String user = rs.getString("CDIDUT");
-					getListeUserHabilites().add(user.trim().toUpperCase());
-				}
-		
-				rs.close();
-				st.close();
-				conn.commit();
-				conn.close();
-			} catch (Exception e) {
-				t.fermerConnexion();
-				e.printStackTrace();
-			}
+			UserAppli aUser = new UserAppli(admin, pwd, serveur);
+			
+			t = new Transaction(aUser);
+	
+			conn = t.getConnection();
+			ps = conn.prepareStatement("select * from mairie.dcidut where APDF='O' and upper(trim(cdidut))= ?");
+			ps.setString(1, user.trim().toUpperCase());
+			rs = ps.executeQuery();
+			
+			return (rs.next()) ;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} finally {
+			try { rs.close();} catch (SQLException e) {	/*rien*/}
+			try { ps.close();} catch (SQLException e) {	/*rien*/}
+			try { conn.close();} catch (SQLException e) {	/*rien*/}
+			t.fermerConnexion();
 		}
-		
+
+		return false;
 	}
 	
 }

@@ -45,9 +45,6 @@ private java.lang.String getVoirPDFUrl(javax.servlet.http.HttpServletRequest req
 public void init() throws javax.servlet.ServletException {
 	// insert code to initialize the servlet here
 	initialiseParametreInitiaux();
-
-	//init des user habilités
-	initialiseListeUserHabilites();
 }
 /**
  * Insérez la description de la méthode ici.
