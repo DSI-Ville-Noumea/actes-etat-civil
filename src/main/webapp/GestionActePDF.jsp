@@ -28,11 +28,11 @@ document.formu.elements[nom].focus();
 <%
 	if (SuperServlet.getUserAppli(request) == null) {
 		response.setStatus(javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED); 
-		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour l'Ã©tat civil\"");
+		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour l'état civil\"");
 
 		response.setContentType("text/html");
 		try {
-		out.println("Vous n'Ãªtes pas habilitÃ©");
+		out.println("Vous n'êtes pas habilité");
 		} catch (Exception e) {
 		}
 		return;
