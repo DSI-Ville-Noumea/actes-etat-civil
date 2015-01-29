@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc.mairie</groupId>
   <artifactId>actes-etat-civil</artifactId>
-  <version>2.9-SNAPSHOT</version>
+  <version>2.9</version>
   <packaging>war</packaging>
   <name>actes-etat-civil</name>
 	<description>Gestion des actes d'état-civil</description>
