@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc.mairie</groupId>
   <artifactId>actes-etat-civil</artifactId>
-  <version>2.9</version>
+  <version>3.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>actes-etat-civil</name>
 	<description>Gestion des actes d'état-civil</description>
@@ -326,7 +326,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<svnurl>https://svn.ville-noumea.nc/sed/actes-etat-civil</svnurl>
 		<java.version>1.7</java.version>
-		<framework_version>2.2</framework_version>
+		<framework_version>2.3</framework_version>
 		<!-- avec java 8 décommenter ci-dessous pour ne pas avoir les erreurs javadoc @param, @result, ... -->
   		<!--additionalparam>-Xdoclint:none</additionalparam-->
 	</properties>
