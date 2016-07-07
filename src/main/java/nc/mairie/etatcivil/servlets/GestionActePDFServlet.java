@@ -1,11 +1,20 @@
 package nc.mairie.etatcivil.servlets;
 
-import com.lowagie.text.pdf.*;
-import com.lowagie.text.*;
-
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfImportedPage;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Insérez la description du type ici.
@@ -35,70 +44,48 @@ public void affectePDFCourant(javax.servlet.http.HttpServletRequest request, Str
 /*
 	Concatène 2 pdf en 1
 */
-@SuppressWarnings("unchecked")
 private boolean concatenePDF(String [] args) throws Exception {
 
 	String texte = "";
 	
+	List<InputStream> list = new ArrayList<InputStream>();
+	
 	boolean fichierManquant = false;
 	for (int i = 0; i < args.length -1; i++){
-		if (! new File(args[i]).exists()) {
+		File f = new File(args[i]);
+		if (! f.exists()) {
 			fichierManquant = true;
 			texte+= "Fichier "+args[i]+" inexistant.\n";
 		}
+		list.add(new FileInputStream(f));
 	}
 
 	if (fichierManquant) throw new Exception(texte);
 	
-
-    int pageOffset = 0;
-    @SuppressWarnings("rawtypes")
-	ArrayList master = new ArrayList();
-    int f = 0;
-    String outFile = args[args.length - 1];
-    Document document = null;
-    PdfCopy writer = null;
-    while (f < args.length - 1) {
-        // we create a reader for a certain document
-        PdfReader reader = new PdfReader(args[f]);
-        reader.consolidateNamedDestinations();
-        // we retrieve the total number of pages
-        int n = reader.getNumberOfPages();
-        List<?> bookmarks = SimpleBookmark.getBookmark(reader);
-        if (bookmarks != null) {
-            if (pageOffset != 0)
-                SimpleBookmark.shiftPageNumbers(bookmarks, pageOffset, null);
-            master.addAll(bookmarks);
+	
+	OutputStream outputStream = new FileOutputStream(new File( args[args.length - 1]));
+	
+	Document document = new Document();
+    PdfWriter writer = PdfWriter.getInstance(document, outputStream);
+    document.open();
+    PdfContentByte cb = writer.getDirectContent();
+    
+    for (InputStream in : list) {
+        PdfReader reader = new PdfReader(in);
+        for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+            document.newPage();
+            //import the page from source pdf
+            PdfImportedPage page = writer.getImportedPage(reader, i);
+            //add the page to the destination pdf
+            cb.addTemplate(page, 0, 0);
         }
-        pageOffset += n;
-        //            logger.info("There are " + n + " pages in " + args[f]);
-
-        if (f == 0) {
-            // step 1: creation of a document-object
-            document = new Document(reader.getPageSizeWithRotation(1));
-            // step 2: we create a writer that listens to the document
-            writer = new PdfCopy(document, new java.io.FileOutputStream(outFile));
-            // step 3: we open the document
-            document.open();
-        }
-        // step 4: we add content
-        PdfImportedPage page;
-        for (int i = 0; i < n;) {
-            ++i;
-            page = writer.getImportedPage(reader, i);
-            writer.addPage(page);
-         //   logger.info("Processed page " + i);
-        }
-        PRAcroForm form = reader.getAcroForm();
-        if (form != null)
-            writer.copyAcroForm(reader);
-        f++;
+        in.close();
     }
-    if (master.size() > 0)
-        writer.setOutlines(master);
-    // step 5: we close the document
+    
+    outputStream.flush();
     document.close();
-
+    outputStream.close();
+	
     return true;
 }
 
@@ -604,9 +591,9 @@ private boolean scindePDF(String nomFichierIN) throws Exception {
 		throw new Exception("Fichier "+nomFichierIN+" inexistant.\n");
 	}
 
+	// Création du reader
+	PdfReader reader= new PdfReader(nomFichierIN);
 	try {
-		// Création du reader
-		PdfReader reader = new PdfReader(nomFichierIN);
 		// récup du nombre de pages
 		int n = reader.getNumberOfPages();
 		if (n<=1) {
@@ -647,6 +634,8 @@ private boolean scindePDF(String nomFichierIN) throws Exception {
 		}
 	} catch (Exception e) {
 		throw (e);
+	} finally {
+		reader.close();
 	}
  
 	return true; 
