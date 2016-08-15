@@ -1,0 +1,11 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - ".autoconf"
+  - "$HOME/.m2"
+notifications:
+  slack:
+    rooms:
+      secure: buYhHe/tDIkYvzi95HuJ0W8sfWZ8b9OEhPPzLUKGNO3k/Y7hJ2r+NSFOI1vGS3DGyg3YCbI4VeuL4oC2uJ94G1kZBtBTgl/ZCLqbQEhtluNt1+WUB2/YzzFDhRrpJ9uKEl5Z65/rheqWvcoLsLdBt0w3YbzIYSAdAYzvUf1kmDcVLvI34LTAOVfLKV9mZlSoI3ABfWhGTs+JBaIIiEaf8gbOHgj5SMrXPkVn01Ec10szIsFl97iei19SqQ72XxNt7B74mfRmerbvRoz5IL0rD399/g45+A68oA0epgKhSOzIYDOsxz6wLiBiB3/mJkS3orKNEFhva64eHeNMc+V897LbaawwyX598j4ZdPAjVXibDEfvIpPFRc+ZiTVtaLPoGrV9Bngfc2WRqPci0XDEv/ijRt9RNACVc15Rk9//mxU/FKOueJLJ4a9rGJNjsmItisBsKhnytlFf/+2vWXHGaQNnU7wDsf2GjvmiLjmAp3eshjpJR+sPoQXR6hJV+/YlOF3+mOINkdrB0vsuQlm7EfL4x1RHc+hW+jAaTvMVefPhX5NXq8hqQmma8FzZZEggL7gKQ9J4eNqKtwblHo+yz0OI6FWoHnCQuoRcULmUbLMY4vSG781I9pfjGK8nOgKaOcWq+5++hYfQFXWmY2znl4wHqcouFel3b5B4pS6I7kE=
