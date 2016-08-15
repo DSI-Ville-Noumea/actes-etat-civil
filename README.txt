@@ -1,8 +1,8 @@
 
 #Sous linux pour monter les dossiers r�seau (en mode root)
-mount -t cifs -o username=SITE-MAIRIE/***REMOVED***,pass=***REMOVED***,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECETATCIVIL /home/luc/mnt/ECETATCIVIL
-mount -t cifs -o username=SITE-MAIRIE/***REMOVED***,pass=***REMOVED***,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECIMGSCN /home/luc/mnt/ECIMGSCN
-mount -t cifs -o username=SITE-MAIRIE/***REMOVED***,pass=***REMOVED***,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECPDFSCN /home/luc/mnt/ECPDFSCN
+mount -t cifs -o username=SITE-MAIRIE/**REMOVED**,pass=**REMOVED**,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECETATCIVIL /home/luc/mnt/ECETATCIVIL
+mount -t cifs -o username=SITE-MAIRIE/**REMOVED**,pass=**REMOVED**,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECIMGSCN /home/luc/mnt/ECIMGSCN
+mount -t cifs -o username=SITE-MAIRIE/**REMOVED**,pass=**REMOVED**,uid=505,gid=507,dir_mode=0775,file_mode=0775 //netmea/ETATCIVIL/TESTECPDFSCN /home/luc/mnt/ECPDFSCN
 
 #Sous linux pour monter les dossiers r�seau
 umount  /home/luc/mnt/ECETATCIVIL
