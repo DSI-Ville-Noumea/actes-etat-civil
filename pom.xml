@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc.mairie</groupId>
   <artifactId>actes-etat-civil</artifactId>
-  <version>3.2.SNAPSHOT</version>
+  <version>3.2</version>
   <packaging>war</packaging>
   <name>actes-etat-civil</name>
 	<description>Gestion des actes d'état-civil</description>
@@ -159,7 +159,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}" tofile="src/site/resources/${project.packaging}/${project.version}/${project.artifactId}##${project.version}.${project.packaging}"/>
+								<copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}" tofile="src/site/resources/${project.packaging}/${project.version}/ROOT##${project.artifactId}-${project.version}.${project.packaging}"/>
 								<checksum algorithm="md5">
 									<fileset dir="src/site/resources/${project.packaging}/${project.version}">
 										<include name="*.war"/>
