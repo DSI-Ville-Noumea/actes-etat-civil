@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>nc.mairie</groupId>
   <artifactId>actes-etat-civil</artifactId>
-  <version>3.2</version>
+  <version>3.3-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>actes-etat-civil</name>
 	<description>Gestion des actes d'état-civil</description>
@@ -126,7 +126,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.0.0</version>
 				<configuration>
 					<webResources>
 						<resource>
